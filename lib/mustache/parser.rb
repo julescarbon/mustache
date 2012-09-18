@@ -138,6 +138,7 @@ EOF
 
       # We found {{ but we can't figure out what's going on inside.
       error "Illegal content in tag" if content.empty?
+      error "Unsafe content in tag" if content.include?("delete") or content.include?("destroy") or content.include?("password")
 
       fetch = [:mustache, :fetch, content.split('.')]
       prev = @result
