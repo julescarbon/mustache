@@ -140,6 +140,10 @@ EOF
       error "Illegal content in tag" if content.empty?
       error "Unsafe content in tag" if content.include?("delete") or content.include?("destroy") or content.include?("password")
 
+      if content == "self"
+        content = "."
+      end
+
       fetch = [:mustache, :fetch, content.split('.')]
       prev = @result
 
